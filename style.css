@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: black;
+    position: relative;
+    perspective: 1000px; /* For 3D effect */
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/1/1b/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.cube {
+    position: relative;
+    width: 5cm; /* ~5 cm cubed */
+    height: 5cm;
+    transform-style: preserve-3d;
+    animation: float 6s infinite ease-in-out;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.face {
+    position: absolute;
+    width: 5cm;
+    height: 5cm;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent glass */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.front  { transform: translateZ(2.5cm); }
+.back   { transform: translateZ(-2.5cm) rotateY(180deg); }
+.left   { transform: translateX(-2.5cm) rotateY(-90deg); }
+.right  { transform: translateX(2.5cm) rotateY(90deg); }
+.top    { transform: translateY(-2.5cm) rotateX(90deg); }
+.bottom { transform: translateY(2.5cm) rotateX(-90deg); }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+    50%     { transform: translateY(-20px) rotateX(360deg) rotateY(360deg); }
+}
